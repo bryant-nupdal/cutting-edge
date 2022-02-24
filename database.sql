@@ -3,18 +3,23 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
+
+-- Create Client Table
 CREATE TABLE "client" (
     "id" SERIAL PRIMARY KEY,
     "company_name" VARCHAR(225)
 );
 
+-- Values for Client Table
 INSERT INTO "client" ("company_name")
 	VALUES ('PRG'), ('Epic'), ('Meridian'), ('Valley Oral'), ('New Perspective'), ('Capital Credit Union'),
 	('Crestwood Condos'), ('Hatch Reality'), ('Fargo Dermatology'), ('N/A');
 
+-- Test Statements : Select Everything / Drop Table
 SELECT * FROM "client";
 DROP TABLE "client";
 
+-- Create Property Table
 CREATE TABLE "property" (
 	"id" SERIAL PRIMARY KEY,
 	"property_name" VARCHAR(225),
@@ -27,6 +32,7 @@ CREATE TABLE "property" (
 	"route_id" integer REFERENCES route
 );
 
+-- Values for Property Table
 INSERT INTO "property" ("property_name", "street", "city", "state", "zip", "address_type", "client_id", "route_id" )
 	VALUES ('Galleria', '5675 26 Ave S', 'Fargo', 'ND', '58104', 'Commerical', 1,1),
 	('Aurora Plaza', '816 24 Ave E', 'West Fargo', 'ND', '58078', 'Commercial', 1,1),
@@ -89,10 +95,11 @@ INSERT INTO "property" ("property_name", "street", "city", "state", "zip", "addr
 	('Northland Apartments', '1115 23 St S', 'Fargo', 'ND', '58103', 'Commercial', 10,7),
 	('Holiday Lights at Lindenwood', '1905 Roger Maris Dr', 'Fargo', 'ND', '58103', 'Commercial', 10,7);
 	
-
+-- Test Statements : Select Everything / Drop Table
 SELECT * FROM "property";
 DROP TABLE "property";
 
+-- Create User Table
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	"first_name" VARCHAR(100),
@@ -103,9 +110,11 @@ CREATE TABLE "user" (
 	"is_admin" BOOLEAN DEFAULT false
 );	
 
+-- Test Statements : Select Everything / Drop Table
 SELECT * FROM "user";
 DROP TABLE "user";
 
+-- Create Machine Table
 CREATE TABLE "machine" (
 	"id" SERIAL PRIMARY KEY,
 	"machine_name" VARCHAR(100),
@@ -113,36 +122,44 @@ CREATE TABLE "machine" (
 	"route_id" integer REFERENCES route
 );
 
+-- Values For Machine Table
 INSERT INTO "machine" ("machine_name", "machine_number", "route_id")
 	VALUES ('1025R', 1, 7),('X-Series', 1, 1), ('X-Series', 2, 1), ('X-Series', 3, 2), ('X-Series', 4, 2), ('3-Series', 1, 1), ('3-Series', 2, 2), ('3-Series', 3, 3),
 	('3-Series', 4, 4), ('3-Series', 5, 4), ('4066', 1, 3), ('4066', 2, 4), ('4066', 3, 7), ('5125', 1, 3), ('5125', 2, 4), ('344', 1, 2), ('344', 2, 1), ('344', 3, 2),
 	('344', 4, 5), ('344', 5, 2),('544', 1, 1), ('truck-plow', 1, 6), ('truck-plow', 2, 7);
 
+-- Test Statements : Select Everything / Drop Table
 SELECT * FROM "machine";
 DROP TABLE "machine";
 
+-- Create Route Table
 CREATE TABLE "route" (
 	"id" SERIAL PRIMARY KEY,
 	"route_number" INTEGER NOT NULL
 );
 
+-- Values For Route
 INSERT INTO "route" ("route_number")
 	VALUES (1), (2), (3), (4), (5), (6), (7);
 
+-- Test Statements : Select Everythign / Drop Table
 SELECT * FROM "route";
 DROP TABLE "route";
 
+-- Test Statement : Joins Property and Route and Selects at a Specific Route Number
 SELECT "route"."route_number", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type" FROM "route" 
 JOIN "property" ON "property"."route_id" = "route"."id" WHERE "route"."route_number" = 2;
 
+-- Create Time Card Table
 CREATE TABLE "time_card" (
 	"id" SERIAL PRIMARY KEY,
 	"clock_in" TIMESTAMP DEFAULT NOW() NOT NULL,
 	"clock_out" TIMESTAMP DEFAULT NOW() NOT NULL,
-	"task_id" INTEGER REFERENCES "task",
+	"task_id" INTEGER REFERENCES "task" ON DELETE CASCADE,
 	"user_id" INTEGER REFERENCES "user"
 );
 
+-- Test Statement : Massive Join Table for all Data
 SELECT "task"."date", "clock_in", "clock_out",
 	"route"."route_number",
 	"property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type",
@@ -151,11 +168,22 @@ JOIN "user" ON "user"."id" = "time_card"."user_id"
 JOIN "task" ON "task"."id" = "time_card"."task_id"
 JOIN "work_order" ON "work_order"."id" = "task"."work_order_id"
 JOIN "property" ON "property"."id" = "task"."property_id"
-JOIN "route" ON "route"."id" = "property"."route_id";
+JOIN "route" ON "route"."id" = "property"."route_id"
+;
 
+-- Test Statement : Updates the Timecard Entry 
+UPDATE "time_card"
+SET "clock_in" = NOW()
+WHERE "id"='60';
+
+-- Test Statement : Select Everything / Drop Table
 SELECT * FROM "time_card";
 DROP TABLE "time_card";
 
+-- Test Statement : Used for Timestamp to get Current Time
+select NOW();
+
+-- Create Task Table 
 CREATE TABLE "task" (
 	"id" SERIAL PRIMARY KEY,
 	"date" TIMESTAMP DEFAULT NOW() NOT NULL,
@@ -163,22 +191,38 @@ CREATE TABLE "task" (
 	"work_order_id" INTEGER REFERENCES "work_order"
 );
 
+-- Test Statement : Selects Needed Fields From Task, Property, and Work Order
 SELECT "date", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip",
 	 "work_order"."is_complete", "work_order"."timestamp" FROM "task"
 JOIN "property" ON "property"."id" = "task"."property_id"
 JOIN "work_order" ON "work_order"."id" = "task"."work_order_id"
 ;
 
+-- Test Statement : Grabs all Tasks on a Specific Work Order
+SELECT * FROM "task" WHERE "task"."work_order_id" = 1;
+
+-- Test Statements : delete task(s)
+DELETE FROM "task" WHERE "task"."id" = 1;
+DELETE FROM "task";
+
+--Test Statements : Select everything / Drop Table
 SELECT * FROM "task";
 DROP TABLE "task";
 
+-- Create Work Order Table
 CREATE TABLE "work_order" (
 	"id" SERIAL PRIMARY KEY,
 	"is_complete" BOOLEAN DEFAULT false,
 	"timestamp" TIMESTAMP DEFAULT NOW() NOT NULL
 );
+
+-- Values For Work Order
 INSERT INTO "work_order" ("is_complete")
 VALUES (false) RETURNING *;
 
+-- Test Statements : Select Everything / Drop Table
 SELECT * FROM "work_order";
 DROP TABLE "work_order";
+
+-- Test Statement : Updates the Record to Complete and Changes the Original Timestamp to the Current Time 
+UPDATE "work_order" SET "is_complete" = true, "timestamp" = NOW();
