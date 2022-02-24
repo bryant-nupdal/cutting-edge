@@ -20,7 +20,8 @@ const router = express.Router();
   router.get('/:routeID', rejectUnauthenticated, (req, res) => {
     console.log('GET request to: /api/routeID');
     let routeID = req.params.routeID; 
-    let queryText = `SELECT "route"."route_number", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type" FROM "route" 
+    let queryText = `SELECT "route"."route_number", 
+    "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type" FROM "route" 
     JOIN "property" ON "property"."route_id" = "route"."id" WHERE "route"."route_number"=$1;`;
     
     pool.query(queryText, [routeID]).then((response) => {

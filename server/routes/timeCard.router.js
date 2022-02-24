@@ -6,35 +6,43 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/:orderID', rejectUnauthenticated, (req, res) => {
   // GET route code here
+  let orderID = req.params.orderID;
   console.log('GET request to: /api/timeCard');
-  pool.query(`SELECT "task"."date", "clock_in", "clock_out",
-	"route"."route_number",
-	"property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type",
-	"user"."first_name", "user"."last_name" FROM "time_card" 
-JOIN "user" ON "user"."id" = "time_card"."user_id"
-JOIN "task" ON "task"."id" = "time_card"."task_id"
-JOIN "work_order" ON "work_order"."id" = "task"."work_order_id"
-JOIN "property" ON "property"."id" = "task"."property_id"
-JOIN "route" ON "route"."id" = "property"."route_id";`).then((result) => {
-  res.send(result.rows);
-}).catch((error) => {
-  console.log('Error trying to preform GET to /api/timeCard: ', error);
-})
+  console.log('the orderID is: ', orderID);
+
+  let queryText = `SELECT "task"."date", "clock_in", "clock_out",
+    "route"."route_number",
+    "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type",
+    "user"."first_name", "user"."last_name" FROM "time_card" 
+  JOIN "user" ON "user"."id" = "time_card"."user_id"
+  JOIN "task" ON "task"."id" = "time_card"."task_id"
+  JOIN "work_order" ON "work_order"."id" = "task"."work_order_id"
+  JOIN "property" ON "property"."id" = "task"."property_id"
+  JOIN "route" ON "route"."id" = "property"."route_id" WHERE "task"."work_order_id" = $1;`;
+
+pool.query(queryText, [orderID]).then((response) => {
+    res.send(response.rows);
+  }).catch((error) => {
+    console.log('Error trying to preform GET to /api/timeCard: ', error);
+    res.sendStatus(500);
+  })
 });
 
 /**
  * POST route template
  */
+
+//I think i will have to create another get and set both to their own path
+
 router.post('/', rejectUnauthenticated, async (req, res) => {
   // POST route code here
   try {
-    console.log(req.body.work_order_id);
-    
+
     const taskResponse = await pool.query(`SELECT * FROM "task" WHERE "work_order_id" = ${req.body.work_order_id};`);
 
-    for (let task of taskResponse.rows ) {
+    for (let task of taskResponse.rows) {
       // console.log(task);
       // console.log(req.user);
       const queryText = `INSERT INTO "time_card" ("task_id", "user_id") VALUES ($1, $2);`;
@@ -51,15 +59,15 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 /**
  * PUT route template
  */
- router.put('/', (req, res) => {
-    // PUT route code here
-  });
-  
-  /**
-   * DELETE route template
-   */
-  router.delete('/', (req, res) => {
-    // DELETE route code here
-  });
+router.put('/', (req, res) => {
+  // PUT route code here
+});
+
+/**
+ * DELETE route template
+ */
+router.delete('/', (req, res) => {
+  // DELETE route code here
+});
 
 module.exports = router;
