@@ -30,12 +30,13 @@ JOIN "route" ON "route"."id" = "property"."route_id";`).then((result) => {
 router.post('/', rejectUnauthenticated, async (req, res) => {
   // POST route code here
   try {
-    const taskResponse = await pool.query(`SELECT * FROM "task";`);
-    // const userResponse = await pool.query(`SELECT * FROM "user";`);
+    console.log(req.body.work_order_id);
+    
+    const taskResponse = await pool.query(`SELECT * FROM "task" WHERE "work_order_id" = ${req.body.work_order_id};`);
 
     for (let task of taskResponse.rows ) {
-      console.log(task);
-      console.log(req.user);
+      // console.log(task);
+      // console.log(req.user);
       const queryText = `INSERT INTO "time_card" ("task_id", "user_id") VALUES ($1, $2);`;
       await pool.query(queryText, [task.work_order_id, req.user.id]);
     }

@@ -132,6 +132,9 @@ INSERT INTO "route" ("route_number")
 SELECT * FROM "route";
 DROP TABLE "route";
 
+SELECT "route"."route_number", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type" FROM "route" 
+JOIN "property" ON "property"."route_id" = "route"."id" WHERE "route"."route_number" = 2;
+
 CREATE TABLE "time_card" (
 	"id" SERIAL PRIMARY KEY,
 	"clock_in" TIMESTAMP DEFAULT NOW() NOT NULL,
@@ -174,6 +177,8 @@ CREATE TABLE "work_order" (
 	"is_complete" BOOLEAN DEFAULT false,
 	"timestamp" TIMESTAMP DEFAULT NOW() NOT NULL
 );
+INSERT INTO "work_order" ("is_complete")
+VALUES (false) RETURNING *;
 
 SELECT * FROM "work_order";
 DROP TABLE "work_order";
