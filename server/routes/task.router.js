@@ -56,18 +56,31 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   }
 });
 
-/**
- * PUT route template
- */
-router.put('/', (req, res) => {
-  // PUT route code here
-});
-
-/**
- * DELETE route template
- */
-router.delete('/', (req, res) => {
+router.delete('/deleteTask/:ID', rejectUnauthenticated, async (req, res) => {
   // DELETE route code here
+  try{
+    console.log('DELETE request to api/task/deleteTask/ID');
+    let ID = req.params.ID;
+    const queryText = 'DELETE FROM "task" WHERE "task"."id" = $1;';
+    await pool.query(queryText, [ID]);
+    res.sendStatus(204);
+  } catch {
+    console.log('Error with the GET request to /api/task: ', error);
+    res.sendStatus(500);
+  }
 });
 
+router.delete('/deleteTask', rejectUnauthenticated, async (req, res) => {
+  // DELETE route code here
+  try{
+    console.log('DELETE request to api/task/deleteTask');
+    let ID = req.params.ID;
+    const queryText = 'DELETE FROM "task";';
+    await pool.query(queryText);
+    res.sendStatus(204);
+  } catch {
+    console.log('Error with the GET request to /api/task: ', error);
+    res.sendStatus(500);
+  }
+});
 module.exports = router;

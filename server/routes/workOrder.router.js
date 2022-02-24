@@ -17,25 +17,20 @@ const router = express.Router();
   });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+//PUT request for timecard clock out
+router.put('/completed/:ID', rejectUnauthenticated, async (req, res) => {
+  // PUT route code here
+  console.log('PUT request to /api/workOrder/completed/ID');
+  try{
+    let ID = req.params.ID;
+    const queryText = `UPDATE "work_order" SET "is_complete" = true, "timestamp" = NOW() WHERE "id"=$1 ;`;
+    await pool.query(queryText, [ID]);
+    res.sendStatus(202);
+  } catch {
+    console.log('There was an error in the PUT to api/workOrder for updating the completion time: ', error);
+    res.sendStatus(500);
+  }
 
-/**
- * PUT route template
- */
- router.put('/', (req, res) => {
-    // PUT route code here
-  });
-  
-  /**
-   * DELETE route template
-   */
-  router.delete('/', (req, res) => {
-    // DELETE route code here
-  });
+});
 
 module.exports = router;

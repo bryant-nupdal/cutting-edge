@@ -50,7 +50,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 });
 
 //PUT request for timecard clock in
-
  router.put('/clockIn/:ID', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
   try{
@@ -66,7 +65,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 });
 
 //PUT request for timecard clock out
-
 router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
   try{
@@ -79,14 +77,6 @@ router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
     res.sendStatus(500);
   }
 
-});
-
-
-/**
- * DELETE route template
- */
-router.delete('/', (req, res) => {
-  // DELETE route code here
 });
 
 module.exports = router;
