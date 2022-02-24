@@ -30,23 +30,16 @@ pool.query(queryText, [orderID]).then((response) => {
   })
 });
 
-/**
- * POST route template
- */
-
-//I think i will have to create another get and set both to their own path
-
 router.post('/', rejectUnauthenticated, async (req, res) => {
-  // POST route code here
   try {
-
+    //TODO fix injextion attack
     const taskResponse = await pool.query(`SELECT * FROM "task" WHERE "work_order_id" = ${req.body.work_order_id};`);
-
+    console.log('this is the req.body: ', req.body);
     for (let task of taskResponse.rows) {
-      // console.log(task);
-      // console.log(req.user);
+      console.log(task.work_order_id);
+      console.log("the user is number",req.user.id);
       const queryText = `INSERT INTO "time_card" ("task_id", "user_id") VALUES ($1, $2);`;
-      await pool.query(queryText, [task.work_order_id, req.user.id]);
+      await pool.query(queryText, [task.id, req.user.id]);
     }
     res.sendStatus(201);
 
@@ -56,12 +49,38 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   }
 });
 
-/**
- * PUT route template
- */
-router.put('/', (req, res) => {
+//PUT request for timecard clock in
+
+ router.put('/clockIn/:ID', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
+  try{
+    let ID = req.params.ID;
+    const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "id"=$1 ;`;
+    await pool.query(queryText, [ID]);
+    res.sendStatus(202);
+  } catch {
+    console.log('There was an error in the PUT to api/timeCard for updating the clock in time: ', error);
+    res.sendStatus(500);
+  }
+
 });
+
+//PUT request for timecard clock out
+
+router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
+  // PUT route code here
+  try{
+    let ID = req.params.ID;
+    const queryText = `UPDATE "time_card" SET "clock_out" = NOW() WHERE "id"=$1 ;`;
+    await pool.query(queryText, [ID]);
+    res.sendStatus(202);
+  } catch {
+    console.log('There was an error in the PUT to api/timeCard for updating the clock out time: ', error);
+    res.sendStatus(500);
+  }
+
+});
+
 
 /**
  * DELETE route template
