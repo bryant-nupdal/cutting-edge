@@ -3,9 +3,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
  router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   console.log('GET request to: /api/workOrder');

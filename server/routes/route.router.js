@@ -3,9 +3,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route 
- */
  router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('GET request to: /api/route');
     pool.query(`SELECT "route"."route_number", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type" FROM "route" 

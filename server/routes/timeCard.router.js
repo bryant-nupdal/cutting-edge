@@ -3,9 +3,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/:orderID', rejectUnauthenticated, (req, res) => {
   // GET route code here
   let orderID = req.params.orderID;
@@ -32,8 +29,8 @@ pool.query(queryText, [orderID]).then((response) => {
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
   try {
-    //TODO fix injextion attack
-    const taskResponse = await pool.query(`SELECT * FROM "task" WHERE "work_order_id" = ${req.body.work_order_id};`);
+    const queryText = `SELECT * FROM "task" WHERE "work_order_id" = $1;`
+    const taskResponse = await pool.query(queryText, [req.body.work_order_id])
     console.log('this is the req.body: ', req.body);
     for (let task of taskResponse.rows) {
       console.log(task.work_order_id);
