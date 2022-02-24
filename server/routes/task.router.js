@@ -22,6 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated, async (req, res) => {
   //insert work order
+  console.log('POST request to: /api/task');
   try {
     // begin
     // await pool.query('BEGIN');
@@ -32,14 +33,12 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     //   console.log("there was an error in POST to work_order: ", error);
     // });
     const response = await pool.query(`INSERT INTO "work_order" ("is_complete") VALUES (false) RETURNING *;`);
-    console.log(response.rows[0].id);
 
     // select query for all properties
     const propResponse = await pool.query(`SELECT * FROM "property";`);
 
     // for loop over properties
     for (let property of propResponse.rows) {
-      console.log(property.id);
       const queryText = `INSERT INTO "task" ("property_id", "work_order_id") VALUES ($1, $2);`;
       await pool.query(queryText, [property.id, response.rows[0].id]);
     }
