@@ -3,11 +3,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
   console.log('GET request to: /api/task');
   pool.query('SELECT * FROM "task";').then((result) => {
     res.send(result.rows);
@@ -17,11 +13,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
-/**
- * POST route template
- */
 router.post('/', rejectUnauthenticated, async (req, res) => {
-  //insert work order
   console.log('POST request to: /api/task');
   try {
     // begin

@@ -2,6 +2,11 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import propertySaga from './property.saga';
+import routeSaga from './route.saga';
+import tasksSaga from './task.saga';
+import timeCardSaga from './timeCard.saga';
+import workOrderSaga from './workOrder.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -15,5 +20,10 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    propertySaga(),
+    routeSaga(),
+    tasksSaga(),
+    timeCardSaga(),
+    workOrderSaga()
   ]);
 }
