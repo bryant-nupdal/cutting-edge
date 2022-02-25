@@ -1,4 +1,4 @@
-export const tasksReducer = (state = [], action ) => {
+const taskReducer = (state = [], action ) => {
     switch (action.type) {
         case 'STORE_TASKS':
             return action.payload;
@@ -6,3 +6,4 @@ export const tasksReducer = (state = [], action ) => {
             return state;
     }
 }
+export default taskReducer;

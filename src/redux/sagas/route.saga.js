@@ -25,3 +25,5 @@ function* routeSaga() {
     yield takeEvery ('GET_ALL_ROUTES', fetchAllRoutes);
     yield takeEvery ('GET_ROUTE', fetchRoute);
 }
+
+export default routeSaga;

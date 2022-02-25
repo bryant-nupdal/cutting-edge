@@ -37,9 +37,11 @@ function* clockIn(action) {
     }
  }
 
-export function* rootSaga() {
+export function* timeCardSaga() {
     yield takeEvery('FETCH_TIMECARD', fetchTimecard);
     yield takeEvery('ADD_TIMECARD', addCard);
     yield takeEvery('UPDATE_CLOCK_IN', clockIn);
     yield takeEvery('UPDATE_CLOCK_OUT', clockOut);
  }
+
+ export default timeCardSaga;

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { response } from 'express';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* fetchTasks(){
@@ -12,10 +11,10 @@ function* fetchTasks(){
     }
 }
 
-function* addTask(){
+function* addTask(action){
     try{
         yield axios.post('/api/task', action.payload);
-        yield put({ type: 'GET_TASKS', payload: response.data });
+        yield put({ type: 'GET_TASKS' });
     } catch (error) {
         console.log(error);
     }
@@ -39,9 +38,11 @@ function* deleteTask(action) {
     }
  }
 
-function* propertySaga() {
+function* taskSaga() {
     yield takeEvery ('GET_TASKS', fetchTasks);
     yield takeEvery ('ADD_TASKS', addTask);
     yield takeEvery ('DELETE_TASK', deleteTask);
     yield takeEvery ('DELETE_ALL_TASKS', deleteAllTasks);
 }
+
+export default taskSaga;

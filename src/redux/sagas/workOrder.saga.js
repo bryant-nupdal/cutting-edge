@@ -20,7 +20,9 @@ function* isComplete (action) {
 }
 
 // Create the rootSaga generator function
-export function* rootSaga() {
+export function* workOrderSaga() {
    yield takeEvery('FETCH_WORK_ORDERS', fetchOrders);
    yield takeEvery('UPDATE_COMPLETE', isComplete);
 }
+
+export default workOrderSaga;

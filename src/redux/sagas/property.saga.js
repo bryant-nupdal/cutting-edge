@@ -14,3 +14,5 @@ function* fetchProperties(){
 function* propertySaga() {
     yield takeEvery ('GET_PROPERTY', fetchProperties);
 }
+
+export default propertySaga;

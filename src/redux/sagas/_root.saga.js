@@ -4,7 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import propertySaga from './property.saga';
 import routeSaga from './route.saga';
-import tasksSaga from './task.saga';
+import taskSaga from './task.saga';
 import timeCardSaga from './timeCard.saga';
 import workOrderSaga from './workOrder.saga';
 
@@ -22,7 +22,7 @@ export default function* rootSaga() {
     userSaga(),
     propertySaga(),
     routeSaga(),
-    tasksSaga(),
+    taskSaga(),
     timeCardSaga(),
     workOrderSaga()
   ]);
