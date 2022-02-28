@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import RouteSelectorPage from '../RouteSelectorPage';
+import StartRoute from '../StartRoute';
 
 import './App.css';
 
@@ -110,6 +112,17 @@ function App() {
             }
           </Route>
 
+          <Route 
+            exact
+            path="/routeSelector" >
+                <RouteSelectorPage />
+          </Route>
+
+          <Route 
+            exact
+            path="/routeSelector/:routeID" >
+              <StartRoute />
+          </Route>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

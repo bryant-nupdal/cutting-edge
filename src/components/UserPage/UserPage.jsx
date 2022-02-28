@@ -1,15 +1,32 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { useHistory } from 'react-router';
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const viewRoutes = () => {
+    console.log('button was clicked to view routes');
+    dispatch({
+      type: 'GET_ALL_ROUTES'
+    });
+    history.push("/routeSelector");
+  }
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <button onClick={viewRoutes}>Begin A Route</button>
+      <div className="importantInfo">
+        <ul>Important Info:
+          <li>Office Phone Number</li>
+          <li>Manager Phone Number</li>
+          <li>Repair Service Phone Number</li>
+        </ul>
+      </div>
     </div>
   );
 }

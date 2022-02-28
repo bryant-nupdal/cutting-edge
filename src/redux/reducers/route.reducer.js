@@ -9,7 +9,7 @@ export const routesReducer = (state = [], action ) => {
 
 export const routeReducer = (state = [], action ) => {
     switch (action.type) {
-        case 'STORE_ALL_ROUTES':
+        case 'STORE_ROUTE':
             return action.payload;
         default:
             return state;

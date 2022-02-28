@@ -9,9 +9,9 @@ router.get('/:orderID', rejectUnauthenticated, (req, res) => {
   console.log('GET request to: /api/timeCard');
   console.log('the orderID is: ', orderID);
 
-  let queryText = `SELECT "task"."date", "clock_in", "clock_out",
+  let queryText = `SELECT "task"."work_order_id", "task"."date", "clock_in", "clock_out",
     "route"."route_number",
-    "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type",
+    "property"."id", "property"."property_name", "property"."street", "property"."city", "property"."state", "property"."zip", "property"."address_type",
     "user"."first_name", "user"."last_name" FROM "time_card" 
   JOIN "user" ON "user"."id" = "time_card"."user_id"
   JOIN "task" ON "task"."id" = "time_card"."task_id"
