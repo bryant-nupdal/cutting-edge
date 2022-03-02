@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button';
+import SnowStorm from 'react-snowstorm';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -19,7 +20,10 @@ function UserPage() {
   }
   return (
     <div className="container">
+      <SnowStorm />
       <h2>Welcome, {user.username}!</h2>
+      <div className="logo-holder">
+      </div>
       <Button varient="primary" onClick={viewRoutes}>Begin A Route</Button>
       <div className="importantInfo">
         <ul>Important Info:

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import RouteProperties from './RouteProperties';
+import SnowStorm from 'react-snowstorm';
 
 function StartRoute() {
 
@@ -28,6 +29,7 @@ function StartRoute() {
     }
     return (
         <>
+            <SnowStorm />
             <h1>Route <span> {route[0]?.route_number}</span></h1>
             <section className="AvailableRoutes">
             {route.map((properties, index) => 

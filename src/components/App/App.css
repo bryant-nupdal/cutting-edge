@@ -112,3 +112,16 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.text-box {
+  background-color: rgba(68, 68, 68, 0.11);
+  padding: 2%;
+  border-radius: 8%;
+  text-align: center;
+}
+
+.logo-holder {
+  width: 200px;
+  height: 200px;
+  background-image: url('tractor.png');
+}

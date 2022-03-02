@@ -1,13 +1,10 @@
 import React from 'react';
-
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
+import SnowStorm from 'react-snowstorm';
 
 function InfoPage() {
   return (
     <div className="container">
+      <SnowStorm />
       <p>Info Page</p>
     </div>
   );
