@@ -31,7 +31,7 @@ function StartRoute() {
             <h1>Route <span> {route[0]?.route_number}</span></h1>
             <section className="AvailableRoutes">
             {route.map((properties, index) => 
-                <RouteProperties key={index} id={properties?.id} number={properties?.route_number} type={properties?.address_type} name={properties?.property_name}
+                <RouteProperties key={index} id={properties?.id} routeNumber={properties?.route_number} property_id={properties?.property_id} type={properties?.address_type} name={properties?.property_name}
                     street={properties?.street} city={properties?.city} state={properties?.state} zip={properties?.zip}/>
             )}
             <button onClick={returnToHome} >Submit Timecard for Route: <span>{route[0]?.route_number}</span></button>

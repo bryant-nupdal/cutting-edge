@@ -2,6 +2,7 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router';
+import Button from 'react-bootstrap/Button';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -19,7 +20,7 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <button onClick={viewRoutes}>Begin A Route</button>
+      <Button varient="primary" onClick={viewRoutes}>Begin A Route</Button>
       <div className="importantInfo">
         <ul>Important Info:
           <li>Office Phone Number</li>
