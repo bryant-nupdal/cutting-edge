@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Hubballi, Baskerville, Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
   background-image: url('whiteout.jpeg');
   background-size: cover;
@@ -31,10 +31,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #ffc300;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #003566;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -57,7 +57,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #001d3d;
   text-decoration: none;
 }
 
@@ -120,8 +120,14 @@ input {
   text-align: center;
 }
 
-.logo-holder {
-  width: 200px;
-  height: 200px;
-  background-image: url('tractor.png');
+
+
+h1 {
+  text-align: center;
+}
+h3 {
+  text-align: left;
+}
+ul {
+  list-style: none;
 }

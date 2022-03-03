@@ -51,7 +51,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
   try{
     let ID = req.params.ID;
-    const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "id"=$1 ;`;
+    const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "task_id"=$1 ;`;
     await pool.query(queryText, [ID]);
     res.sendStatus(202);
   } catch {
@@ -66,7 +66,7 @@ router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
   try{
     let ID = req.params.ID;
-    const queryText = `UPDATE "time_card" SET "clock_out" = NOW() WHERE "id"=$1 ;`;
+    const queryText = `UPDATE "time_card" SET "clock_out" = NOW() WHERE "task_id"=$1 ;`;
     await pool.query(queryText, [ID]);
     res.sendStatus(202);
   } catch {

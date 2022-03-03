@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 
 function RouteProperties(props) {
     const dispatch = useDispatch();
@@ -12,14 +13,16 @@ function RouteProperties(props) {
     const timecard = useSelector(store => store.timeCard);
     const route = useSelector(store => store.route);
 
+    const [clicked, setClicked] = useState(false);
+
     useEffect(() => {
         getProperties();
     }, []);
 
     const getProperties = () => {
-        dispatch ({
-            type : 'GET_ALL_ROUTES'
-        });
+        // dispatch ({
+        //     type : 'GET_TASKS'
+        // });
         dispatch({
             type: 'ADD_TIMECARD', 
             payload: {work_order_id : workOrder}
@@ -27,6 +30,12 @@ function RouteProperties(props) {
     }
     
     function clockIn() {
+        console.log('the current props going into the clock in function are: ', props);
+        if (clicked === true) {
+            setClicked(false);
+        } else {
+            setClicked(true);
+        }
         console.log('this is the payload', props.id);
         console.log('clock in was pressed');
         console.log('the props are: ', props);
@@ -41,6 +50,11 @@ function RouteProperties(props) {
     }
 
     const clockOut = () => {
+        if (clicked === true) {
+            setClicked(false);
+        } else {
+            setClicked(true);
+        }
         console.log('Clock out button was pressed');
         dispatch({
             type: 'UPDATE_CLOCK_OUT',
@@ -57,11 +71,14 @@ function RouteProperties(props) {
     }
 
     return (
-        <>
+        <Container>
             <ul>
-                <li> {props?.property_id} {props?.name} <br /> {props?.street}, {props?.city}, {props?.state} - {props?.zip} <button className="clock-in-button" onClick={clockIn} >Clock In</button><button className="clock-out-button" onClick={clockOut} >Clock Out</button><button onClick={deleteTask} >Delete Entry</button></li>
+                <li> {props?.property_id} {props?.name} <br /> {props?.street}, {props?.city}, {props?.state} - {props?.zip}
+                {!clicked && <button className="clock-in-button" onClick={clockIn} >Clock In</button>}
+                {clicked && <button className="clock-out-button" onClick={clockOut} >Clock Out</button>}
+                <button onClick={deleteTask} >Delete Entry</button></li>
             </ul>
-        </>
+        </Container>
     );
 }
 export default RouteProperties;

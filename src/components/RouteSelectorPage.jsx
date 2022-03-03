@@ -17,12 +17,14 @@ function routeList() {
     return (
         <>
             <SnowStorm />
+            <div route-list>
             <h1>Available Routes</h1>
             <section className="AvailableRoutes">
             {routes.map((route, index) => 
                 <Route key={index} id={route.id} number={route.number} />
             )}
             </section>
+            </div>
         </>
 
     );

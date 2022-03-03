@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import RouteProperties from './RouteProperties';
 import SnowStorm from 'react-snowstorm';
+import Container from 'react-bootstrap/Container';
 
 function StartRoute() {
 
@@ -28,7 +29,7 @@ function StartRoute() {
         history.push('/user')
     }
     return (
-        <>
+        <Container>
             <SnowStorm />
             <h1>Route <span> {route[0]?.route_number}</span></h1>
             <section className="AvailableRoutes">
@@ -38,7 +39,7 @@ function StartRoute() {
             )}
             <button onClick={returnToHome} >Submit Timecard for Route: <span>{route[0]?.route_number}</span></button>
             </section>
-        </>
+        </Container>
 
     );
 }
