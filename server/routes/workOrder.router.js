@@ -6,7 +6,7 @@ const router = express.Router();
  router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   console.log('GET request to: /api/workOrder');
-  pool.query('SELECT * FROM "work_order";').then((result) => {
+  pool.query('SELECT * FROM "work_order" ORDER BY "id" DESC;').then((result) => {
       res.send(result.rows);
   }).catch((error) => {
       console.log('Error with the GET request to /api/workOrder: ', error);

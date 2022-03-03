@@ -1,4 +1,4 @@
-const taskReducer = (state = [], action ) => {
+export const taskReducer = (state = [], action ) => {
     switch (action.type) {
         case 'STORE_TASKS':
             return action.payload;
@@ -6,4 +6,12 @@ const taskReducer = (state = [], action ) => {
             return state;
     }
 }
-export default taskReducer;
+
+export const filteredTaskReducer = (state = [], action ) => {
+    switch (action.type) {
+        case 'SET_FILTERED_TASKS':
+            return action.payload;
+        default:
+            return state;
+    }
+}

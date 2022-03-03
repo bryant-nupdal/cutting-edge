@@ -13,6 +13,26 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
+/*
+// Get all tasks for a given work order
+// All thats is needed is:
+  - Property information (name, address, etc)
+  - Task ID (for timesheet info)
+*/
+router.get('/workOrderID/:work_order_id', rejectUnauthenticated, (req, res) => {
+  let work_order_id = req.params.work_order_id
+  console.log('GET request to: /api/task/workOrderID/:work_order_id');
+  const queryText = `SELECT "task"."id", "date", "property_id", "work_order_id", to_json("property") AS "property" FROM "task"
+  JOIN "property" ON "property"."id" = "task"."property_id"
+  WHERE "task"."work_order_id" = $1 ORDER BY "property"."id";`
+  pool.query(queryText, [work_order_id]).then((result) => {
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error with the GET request to /api/task: ', error);
+    res.sendStatus(500);
+  });
+});
+
 router.post('/', rejectUnauthenticated, async (req, res) => {
   console.log('POST request to: /api/task');
   try {

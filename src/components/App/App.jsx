@@ -19,8 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import RouteSelectorPage from '../RouteSelectorPage';
-import StartRoute from '../StartRoute';
+import WorkOrderDetailsPage from '../WorkOrderDetailsPage';
+import Tasks from '../Tasks';
 
 import './App.css';
 
@@ -30,6 +30,8 @@ function App() {
   const user = useSelector(store => store.user);
 
   useEffect(() => {
+    dispatch({ type: 'GET_ALL_ROUTES' });
+    dispatch({ type: 'FETCH_WORK_ORDERS' })
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
@@ -112,16 +114,16 @@ function App() {
             }
           </Route>
 
-          <Route 
+          <Route
             exact
-            path="/routeSelector" >
-                <RouteSelectorPage />
+            path="/workorder/:workorderID" >
+            <WorkOrderDetailsPage />
           </Route>
 
-          <Route 
+          <Route
             exact
-            path="/routeSelector/:routeID" >
-              <StartRoute />
+            path="/workorder/:workorderID/:routeID" >
+            <Tasks />
           </Route>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

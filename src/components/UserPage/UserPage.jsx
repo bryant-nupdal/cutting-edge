@@ -3,33 +3,73 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button';
-import SnowStorm from 'react-snowstorm';
 import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
-
-  // const dispatch = useDispatch();
+  const workOrders = useSelector((store) => store.workOrder);
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const viewRoutes = () => {
-    console.log('button was clicked to view routes');
-    // dispatch({
-    //   type: 'GET_ALL_ROUTES'
-    // });
-    history.push("/routeSelector");
+  const viewRoutes = (workOrder) => {
+    history.push(`/workOrder/${workOrder.id}`);
+
   }
+
+  function complete(workOrder) {
+    dispatch({
+      type: 'UPDATE_COMPLETE',
+      payload: workOrder.id
+    });
+  }
+
+  function newWorkOrder() {
+    dispatch({
+      type: 'NEW_WORK_ORDER'
+    });
+
+  }
+
   return (
     <Container>
-      <SnowStorm />
-
       <div className='text-box'>
         <div className="welcome-text">
           <h3>Welcome, {user.username}!</h3>
         </div>
         <div className="logo-holder">
           <div className="contact">
-            <Button varient="primary" onClick={viewRoutes}>Begin A Route</Button>
+            <Button varient="primary" onClick={newWorkOrder}>Create a new Work Order</Button>
+            <Table>
+              <thead>
+                <tr>
+                <th></th>
+                <th>id</th>
+                <th>complete</th>
+                <th>timestamp</th>
+                <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {workOrders.map((workOrder, index) =>
+                  <tr key={index}>
+                    <td>
+                      <Button className="view-routes" varient="primary" onClick={() => viewRoutes(workOrder)}>View Routes</Button>
+                    </td>
+                    <td>{workOrder.id}</td>
+                    <td>{workOrder.is_complete ? 'Yes' : 'No'}
+                    </td>
+                    <td>
+                      {workOrder.is_complete && <span>Completed At: {workOrder.timestamp}</span>}
+                    </td>
+                    <td>
+                      <Button className="mark-complete" varient="secondary" onClick={() => complete(workOrder)}>Mark Complete</Button>
+                    </td>
+
+                  </tr>
+                )}
+              </tbody>
+            </Table>
             <ul>Important Info:
               <li>Office Phone Number</li>
               <li>Manager Phone Number</li>
