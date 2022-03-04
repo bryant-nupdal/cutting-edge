@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 
 function TaskItem({ task }) {
     const dispatch = useDispatch();
@@ -10,62 +9,23 @@ function TaskItem({ task }) {
     // let workOrder =id[0]?.work_order_id;
     // const card = useSelector(store => store.timeCard);
     // const property = useSelector(store => store.properties);
-    const timecard = useSelector(store => store.timeCard);
-    const filteredTimecards = timecard.filter(timecard => timecard.id === Number(task?.id));
-    // const route = useSelector(store => store.route);
-    // const [clicked, setClicked] = useState(false);
+    const timecards = useSelector(store => store.timeCard);
+    const filteredTimecards = timecards.filter(timecard => timecard.task_id === Number(task.id));
 
-    // useEffect(() => {
-    //     getProperties();
-    // }, []);
-
-    // const getProperties = () => {
-    //     // dispatch ({
-    //     //     type : 'GET_TASKS'
-    //     // });
-    //     dispatch({
-    //         type: 'ADD_TIMECARD', 
-    //         payload: {work_order_id : workOrder}
-    //     });
-    // }
-    
     function clockIn(task) {
         console.log('the clock in button was clicked!', task);
-    
-        // if (clicked === true) {
-        //     setClicked(false);
-        // } else {
-        //     setClicked(true);
-        // }
-        // console.log('this is the payload', props.id);
-        // console.log('clock in was pressed');
-        // console.log('the props are: ', props);
-
         dispatch({
             type: 'ADD_TIMECARD_TO_TASK',
-            payload: task.id
+            payload: task
         });
-        // dispatch({
-        //     type: 'UPDATE_CLOCK_IN',
-        //     payload: task.id
-        // });
-            // dispatch({
-            //     type: 'FETCH_TIMECARD',
-            //     payload: {work_order_id : workOrder}
-            // });
     }
 
-    const clockOut = (task) => {
-        // if (clicked === true) {
-        //     setClicked(false);
-        // } else {
-        //     setClicked(true);
-        // }
-        console.log('Clock out button was pressed');
-        dispatch({
-            type: 'UPDATE_CLOCK_OUT',
-            payload: task.id
-        });
+    const clockOut = (timecard) => {
+        console.log('Clock out button was pressed', timecard);
+        // dispatch({
+        //     type: 'UPDATE_CLOCK_OUT',
+        //     payload: timecard.id
+        // });
     }
 
     // function deleteTask(){
@@ -77,11 +37,21 @@ function TaskItem({ task }) {
     // }
 
     return (
-        <li> 
-            {task?.property?.property_id} {task?.property?.name} <br /> 
-            {task?.property?.street}, {task?.property?.city}, {task?.property.state} - {task?.property?.zip}
+        <li>
+            {task?.property?.property_id} {task?.property?.name} <br />
+            {task?.property?.street}, {task?.property?.city}, {task?.property.state} - {task?.property?.zip} <br />
             <button className="clock-in-button" onClick={() => clockIn(task)}>Clock In</button>
-            <button className="clock-out-button" onClick={() => clockOut(task)} >Clock Out</button>
+            <ul>
+                {filteredTimecards.map((timecard, index) => {
+                    // in theory you can calculate the duration here between clock in and clock out
+                    // you also know if filteredTimeCards has 0 entries (no one has clocked in)
+                    // you also know if there is clock in AND clock out (so the item may be complete)
+                    // you also know if there is clock in but NO clock out (so in progress)
+                    return <li key={index}> Current time card id is: {timecard.id} Date: {timecard.date} Entry Created At: {timecard.clock_in} <button className="clock-out-button" onClick={() => clockOut(timecard)} >Clock Out</button></li>
+                })}
+            </ul>
+            {/* could display the status / color / etc */}
+            
             {/* <button onClick={deleteTask} >Delete Entry</button> */}
         </li>
     );

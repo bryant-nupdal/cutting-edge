@@ -1,11 +1,9 @@
 import React from 'react';
-import SnowStorm from 'react-snowstorm';
 
 function AboutPage() {
   return (
     <div className="container">
       <div className="text-box">
-        <SnowStorm />
         <p>The purpose of Cutting Edge is to provide employees with an easy way to navigate an intensive snow shift. 
           Upon logging in to the application, an employee will be welcomed, by name, and then given the option to begin a route to tackle.
           The employee will also have access to important information such as phone numbers in case they run into troubles along the way. 

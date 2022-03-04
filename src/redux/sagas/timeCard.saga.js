@@ -14,7 +14,8 @@ function* addCard(action) {
 function* addTimecardToTask(action) {
     console.log('this should be the task id: ', action.payload);
     try {
-        yield axios.post(`/api/timeCard/${action.payload}`);
+        yield axios.post(`/api/timeCard/${action.payload.id}`);
+        yield put({ type: 'FETCH_TIMECARD', payload: action.payload.work_order_id });
     } catch (error) {
         console.log(error);
     }
