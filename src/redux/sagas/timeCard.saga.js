@@ -41,10 +41,10 @@ function* fetchTimecard(action) {
 // }
 
 function* clockOut(action) {
+    console.log('the action coming into clock out saga is: ', action.payload);
     try {
-        console.log( 'in clock out saga, the action.payload is ', action.payload);
-        const response = yield axios.put(`/api/timeCard/clockOut/${action.payload}`);
-        // yield put({ type: 'FETCH_TIMECARD', payload: action.payload });
+        const response = yield axios.put(`/api/timeCard/clockOut/${action.payload.id}`);
+        yield put({ type: 'FETCH_TIMECARD', payload: action.payload.work_order_id });
     } catch (error) {
         console.log(error);
     }

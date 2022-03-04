@@ -11,7 +11,8 @@ function WorkOrderDetailsPage() {
     const workOrders = useSelector(store => store.workOrder);
     const params = useParams();
     const workOrderID = params.workorderID;
-    const currentWorkOrder = workOrders.find(workOrder => workOrder.id === Number(workOrderID));
+    const currentWorkOrder = workOrders.find(workOrder => workOrder.id === Number(workOrderID)
+);
 
     useEffect(() => {
         console.log("inside use effect");
@@ -21,7 +22,6 @@ function WorkOrderDetailsPage() {
                 payload: currentWorkOrder.id
             });
 
-            // TODO: Get all time cards by work order ID too
             dispatch({
                 type: 'FETCH_TIMECARD',
                 payload: currentWorkOrder.id
@@ -36,14 +36,14 @@ function WorkOrderDetailsPage() {
     // TODO: Add a <ul> here instead, around the map
     return (
         <>
-            <h1>Available Routes for WO {JSON.stringify(params)}</h1>
-            <section className="AvailableRoutes">
+            <h1>Routes</h1>
+            <hr />
+            <ul className="AvailableRoutes">
                 {routes.map((route, index) =>
                     <Route key={index} route={route} workOrderID={workOrderID} />
                 )}
-            </section>
+            </ul>
         </>
-
     );
 }
 

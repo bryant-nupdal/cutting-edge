@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
+import moment from 'moment';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -39,6 +40,13 @@ function UserPage() {
         </div>
         <div className="logo-holder">
           <div className="contact">
+            <ul className="info-header"><h4>Important Info</h4>
+              <li>Office Phone Number: </li>
+              <li>Manager Phone Number: </li>
+              <li>Repair Service Phone Number: </li>
+            </ul>
+              <h1>Work Orders</h1>
+              <hr />
             <Button varient="primary" onClick={newWorkOrder}>Create a new Work Order</Button>
             <Table>
               <thead>
@@ -60,7 +68,7 @@ function UserPage() {
                     <td>{workOrder.is_complete ? 'Yes' : 'No'}
                     </td>
                     <td>
-                      {workOrder.is_complete && <span>Completed At: {workOrder.timestamp}</span>}
+                      {workOrder.is_complete && <span>Completed: {moment(workOrder.timestamp).format('LLLL')}</span>}
                     </td>
                     <td>
                       <Button className="mark-complete" varient="secondary" onClick={() => complete(workOrder)}>Mark Complete</Button>
@@ -70,14 +78,9 @@ function UserPage() {
                 )}
               </tbody>
             </Table>
-            <ul>Important Info:
-              <li>Office Phone Number</li>
-              <li>Manager Phone Number</li>
-              <li>Repair Service Phone Number</li>
-            </ul>
+            </div>
           </div>
         </div>
-      </div>
     </Container>
   );
 }
