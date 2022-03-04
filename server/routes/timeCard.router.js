@@ -45,21 +45,34 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     res.sendStatus(500);
   }
 });
-
-//PUT request for timecard clock in
- router.put('/clockIn/:ID', rejectUnauthenticated, async (req, res) => {
-  // PUT route code here
-  try{
-    let ID = req.params.ID;
-    const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "task_id"=$1 ;`;
-    await pool.query(queryText, [ID]);
-    res.sendStatus(202);
-  } catch {
-    console.log('There was an error in the PUT to api/timeCard for updating the clock in time: ', error);
-    res.sendStatus(500);
+//UPDATED POST FOR TIMECARD
+router.post('/:taskID', rejectUnauthenticated, async (req, res) => {
+    try {
+      let taskID = req.params.taskID
+      const queryText = `INSERT INTO "time_card" ("task_id", "user_id") VALUES ($1, $2);`;
+      await pool.query(queryText, [taskID, req.user.id]);
+      res.sendStatus(201);
+    } catch {
+      console.log('there was an error in POST /:taskID ', error);
+      res.sendStatus(500);
   }
 
 });
+
+// //PUT request for timecard clock in
+//  router.put('/clockIn/:ID', rejectUnauthenticated, async (req, res) => {
+//   // PUT route code here
+//   try{
+//     let ID = req.params.ID;
+//     const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "task_id"=$1 ;`;
+//     await pool.query(queryText, [ID]);
+//     res.sendStatus(202);
+//   } catch {
+//     console.log('There was an error in the PUT to api/timeCard for updating the clock in time: ', error);
+//     res.sendStatus(500);
+//   }
+
+// });
 
 //PUT request for timecard clock out
 router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {

@@ -20,9 +20,9 @@ UserPage (home page) - displays work orders, or creates new work order
 - [x] Show all property tasks by work order ID, filtered by route from redux
 - [x] Load all time cards by work order ID when work order is selected
 - [ ] Finish TaskItem:
-   - [ ] Grab the time cards from redux by task id, show them in the taskItem
-   - [ ] Add a 'Clock In' button that creates a new time card for the task in taskItem
-      - [ ] Create a new POST that makes the time card record on the backend, sets clock_in to NOW and clock_out to NULL (default), for the current logged in user.
+   - [X] Grab the time cards from redux by task id, show them in the taskItem
+   - [X] Add a 'Clock In' button that creates a new time card for the task in taskItem
+      - [X] Create a new POST that makes the time card record on the backend, sets clock_in to NOW and clock_out to NULL (default), for the current logged in user.
    - [ ] On each time card, show the clock in and clock out button (those can now work)
    - [ ] Bonus: Conditional render click in / clock out if the time card has clock in or clock out time
    - [ ] Bonus: If it has both in and out, then use moment to show duration (clockOut - clockIn)

@@ -11,10 +11,8 @@ function TaskItem({ task }) {
     // const card = useSelector(store => store.timeCard);
     // const property = useSelector(store => store.properties);
     const timecard = useSelector(store => store.timeCard);
-    const filteredTimecards = timecard.filter(timecard => timecard.id === Number(task.id));
-    console.log('the filtered timecards are: ', filteredTimecards);
+    const filteredTimecards = timecard.filter(timecard => timecard.id === Number(task?.id));
     // const route = useSelector(store => store.route);
-
     // const [clicked, setClicked] = useState(false);
 
     // useEffect(() => {
@@ -31,8 +29,9 @@ function TaskItem({ task }) {
     //     });
     // }
     
-    function clockIn() {
-        // console.log('the current props going into the clock in function are: ', props);
+    function clockIn(task) {
+        console.log('the clock in button was clicked!', task);
+    
         // if (clicked === true) {
         //     setClicked(false);
         // } else {
@@ -41,17 +40,22 @@ function TaskItem({ task }) {
         // console.log('this is the payload', props.id);
         // console.log('clock in was pressed');
         // console.log('the props are: ', props);
-            dispatch({
-                type: 'UPDATE_CLOCK_IN',
-                payload: props.id
-            });
+
+        dispatch({
+            type: 'ADD_TIMECARD_TO_TASK',
+            payload: task.id
+        });
+        // dispatch({
+        //     type: 'UPDATE_CLOCK_IN',
+        //     payload: task.id
+        // });
             // dispatch({
             //     type: 'FETCH_TIMECARD',
             //     payload: {work_order_id : workOrder}
             // });
     }
 
-    const clockOut = () => {
+    const clockOut = (task) => {
         // if (clicked === true) {
         //     setClicked(false);
         // } else {
@@ -60,7 +64,7 @@ function TaskItem({ task }) {
         console.log('Clock out button was pressed');
         dispatch({
             type: 'UPDATE_CLOCK_OUT',
-            payload: props.id
+            payload: task.id
         });
     }
 
@@ -76,8 +80,8 @@ function TaskItem({ task }) {
         <li> 
             {task?.property?.property_id} {task?.property?.name} <br /> 
             {task?.property?.street}, {task?.property?.city}, {task?.property.state} - {task?.property?.zip}
-            <button className="clock-in-button" onClick={clockIn}>Clock In</button>
-            <button className="clock-out-button" onClick={clockOut} >Clock Out</button>
+            <button className="clock-in-button" onClick={() => clockIn(task)}>Clock In</button>
+            <button className="clock-out-button" onClick={() => clockOut(task)} >Clock Out</button>
             {/* <button onClick={deleteTask} >Delete Entry</button> */}
         </li>
     );
