@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function Route(props) {
     const history = useHistory();
@@ -11,7 +12,9 @@ function Route(props) {
 
     return (
         <>
-            <li> Route Number {props.route.route_number} <button className="route-button" onClick={SelectedRoute}>Submit</button></li>
+            <div className="routes-list">
+                <li> Route Number {props.route.route_number} <Button className="route-button" onClick={SelectedRoute}>Submit</Button></li>
+            </div>
         </>
     );
 }

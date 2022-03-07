@@ -30,20 +30,20 @@ function* fetchTimecard(action) {
    }
 }
 
-// function* clockIn(action) {
-//     console.log( 'in clock in saga, the action.payload is ', action.payload);
-//     try {
-//         const response = yield axios.put(`/api/timeCard/clockIn/${action.payload}`);
-//         // yield put({ type: 'FETCH_TIMECARD', payload: action.payload });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
 function* clockOut(action) {
     console.log('the action coming into clock out saga is: ', action.payload);
     try {
         const response = yield axios.put(`/api/timeCard/clockOut/${action.payload.id}`);
+        yield put({ type: 'FETCH_TIMECARD', payload: action.payload.work_order_id });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function* deleteTimecard(action) {
+    console.log('the action came into the delete function', action.payload);
+    try {
+        const response = yield axios.delete(`api/timecard/${action.payload.id}`);
         yield put({ type: 'FETCH_TIMECARD', payload: action.payload.work_order_id });
     } catch (error) {
         console.log(error);
@@ -56,6 +56,7 @@ export function* timeCardSaga() {
     // yield takeEvery('UPDATE_CLOCK_IN', clockIn);
     yield takeEvery('UPDATE_CLOCK_OUT', clockOut);
     yield takeEvery('ADD_TIMECARD_TO_TASK', addTimecardToTask);
+    yield takeEvery('DELETE_TIMECARD', deleteTimecard);
  }
 
  export default timeCardSaga;

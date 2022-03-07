@@ -28,9 +28,9 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
+            {/* <Link className="navLink" to="/info">
               Progress
-            </Link>
+            </Link> */}
 
             <LogOutButton className="navLink" />
           </>

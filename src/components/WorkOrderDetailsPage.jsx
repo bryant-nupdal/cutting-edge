@@ -12,7 +12,7 @@ function WorkOrderDetailsPage() {
     const params = useParams();
     const workOrderID = params.workorderID;
     const currentWorkOrder = workOrders.find(workOrder => workOrder.id === Number(workOrderID)
-);
+    );
 
     useEffect(() => {
         console.log("inside use effect");
@@ -36,13 +36,15 @@ function WorkOrderDetailsPage() {
     // TODO: Add a <ul> here instead, around the map
     return (
         <>
-            <h1>Routes</h1>
-            <hr />
-            <ul className="AvailableRoutes">
-                {routes.map((route, index) =>
-                    <Route key={index} route={route} workOrderID={workOrderID} />
-                )}
-            </ul>
+            <div className="text-box">
+                <h1>Routes</h1>
+                <hr />
+                <ul className="AvailableRoutes">
+                    {routes.map((route, index) =>
+                        <Route key={index} route={route} workOrderID={workOrderID} />
+                    )}
+                </ul>
+            </div>
         </>
     );
 }

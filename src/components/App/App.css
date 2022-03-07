@@ -21,7 +21,7 @@ Container
 -------------------------------------------------------------------------------- */
 
 .container {
-  padding: 20px;
+  padding: 0px;
 }
 
 /* --------------------------------------------------------------------------------
@@ -119,24 +119,81 @@ input {
   text-align: center;
 }
 
-
-
 h1 {
   text-align: center;
+  color: #003566;
 }
 h3 {
   text-align: left;
 }
 ul {
   list-style: none;
-}
-
-.info-header {
-  background-color: rgba(68, 68, 68, 0.11);
-  margin-left: 60%;
-  padding: 2%;
-  text-align: left;
+  padding-left: 0;
+  
 }
 .info-header h4{
   text-align: center;
+  color: #003566;
+}
+.info-header {
+  margin-left: 10%;
+  margin-top: 10%;
+  margin-right: 10%;
+  padding: 1%;
+  background-color: rgba(68, 68, 68, 0.11);
+}
+
+.welcome-text h3{
+  text-align: center;
+  color: #003566;
+}
+
+.logo {
+  width: 62%;
+}
+
+.card{
+  display: inline-block;
+  align-items: center;
+}
+
+.about-text {
+  text-align: center;
+  padding-top: 3%;
+}
+
+.aboutPage-logo {
+  padding-bottom: 10%;
+}
+
+footer {
+  color: #003566;
+}
+
+.submitTimecard {
+  text-align: center;
+}
+
+.routes-list {
+  padding: 1%;
+  background-color: rgba(68, 68, 68, 0.11);
+  margin-left: 25%;
+  margin-right: 25%;
+  border: solid 1px rgba(68, 68, 68, 0.11);
+}
+
+.propertyName {
+  text-align: center;
+  font-weight: bold;
+  color: #003566;
+}
+.missionText {
+  color: #003566;
+}
+.mission-div {
+  padding-top: 5%;
+}
+
+.mission-subTitle{
+  color: #003566;
 }

@@ -59,21 +59,6 @@ router.post('/:taskID', rejectUnauthenticated, async (req, res) => {
 
 });
 
-// //PUT request for timecard clock in
-//  router.put('/clockIn/:ID', rejectUnauthenticated, async (req, res) => {
-//   // PUT route code here
-//   try{
-//     let ID = req.params.ID;
-//     const queryText = `UPDATE "time_card" SET "clock_in" = NOW() WHERE "task_id"=$1 ;`;
-//     await pool.query(queryText, [ID]);
-//     res.sendStatus(202);
-//   } catch {
-//     console.log('There was an error in the PUT to api/timeCard for updating the clock in time: ', error);
-//     res.sendStatus(500);
-//   }
-
-// });
-
 //PUT request for timecard clock out
 router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
   // PUT route code here
@@ -87,6 +72,17 @@ router.put('/clockOut/:ID', rejectUnauthenticated, async (req, res) => {
     res.sendStatus(500);
   }
 
+});
+
+router.delete('/:timecardID',(req,res) => {
+  const timecardID = req.params.timecardID;
+  const queryText = 'DELETE FROM "time_card" WHERE id=$1;';
+  pool.query(queryText, [timecardID]).then((result) => {
+    res.sendStatus(204);
+  }).catch((error) => {
+    console.log(error);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;

@@ -1,18 +1,32 @@
 import React from 'react';
+import logo from '../UserPage/logo.png';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function AboutPage() {
   return (
-    <div className="container">
+    <Container>
       <div className="text-box">
-        <p>The purpose of Cutting Edge is to provide employees with an easy way to navigate an intensive snow shift. 
-          Upon logging in to the application, an employee will be welcomed, by name, and then given the option to begin a route to tackle.
-          The employee will also have access to important information such as phone numbers in case they run into troubles along the way. 
-          That information will include, the current time, the amount of snowfall in the monitored location, 
-          and crucial phone numbers in case of an emergency or questions out on their route. After taking in the Dashboard, 
-          the employee can navigate to a selecting a route and clocking into and out of properties on that route which documents timestamps realtime to record the progress
-          of the employee throughout the night. After completing of the route the employee is able to review the times recordered on each property in table-format.</p>
+      <Row>
+        <Col>
+          {<img src={logo} alt="Logo" className='aboutPage-logo' />}
+        </Col>
+        <Col>
+          <div className ="mission-div">
+          <h1 className="missionTitle">Our Mission</h1>
+          </div>
+          <h5 className="mission-subTitle">Cutting Edge is a service to provide employees with a user-friendly way to navigate intensive snow shifts.</h5>
+          <p className="about-text">
+            Upon logging in, an employee is welcomed and given the option to either continue an existing work order, or create a new one. 
+            A work order consisits of properties to service.
+            Structurely, the properties within a work order are arranged into routes.
+            Routes are organized strategically by a property's geologic location. In testing, we have found routes to be an important part of workflow to efficently break up properties, and effectively send employees over different areas of town to improve productivity. 
+            As an employee arrives and departs from a property, (selects the clocks-in and clock-out buttons) the app records timestamps to document the progress across all devices. After completion of a route, the employee is able to either begin another route or label the work order as complete.</p>
+        </Col>
+      </Row>
       </div>
-    </div>
+    </Container>
   );
 }
 
