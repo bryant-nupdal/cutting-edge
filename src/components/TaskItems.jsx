@@ -46,7 +46,7 @@ function TaskItem({ task }) {
 
     return (
         <li className="card">
-            <Card style={{ width: '27.75rem' }}>
+            <Card style={{ width: '25rem' }}>
                 <Card.Header className="propertyName">{task?.property?.property_name} </Card.Header>
                 <ListGroup variant="flush">
                     <ListGroup.Item>{task?.property?.street}, {task?.property?.city}, {task?.property.state} - {task?.property?.zip}</ListGroup.Item>
@@ -74,7 +74,7 @@ function TaskItem({ task }) {
                                             Clocked in At: {moment(timecard.clock_in).format('LT')} <br />
                                             {timecard.clock_out === null ?
                                                 <span><Button className="clock-out-button" onClick={() => clockOut(timecard)} >Clock Out</Button> <Button varient="Danger" className="delete-button" onClick={() => deleteTimecard(timecard)} >Delete</Button></span> :
-                                                <span> Clocked Out At: {moment(timecard.clock_out).format('LT')} <br /> Completed By: {timecard.username} the duration is {(duration / 60).toFixed(2)} minutes </span>}
+                                                <span> Clocked Out At: {moment(timecard.clock_out).format('LT')} <br /> Completed By: {timecard.username} <br /> Duration is {(duration / 60).toFixed(2)} Hours </span>}
                                             <hr />
 
                                         </li>
