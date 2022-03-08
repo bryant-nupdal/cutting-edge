@@ -19,10 +19,9 @@ Before you get started, make sure you have the following software installed on y
 ## Create database
 Create a new database called `cutting_edge` and paste the data from the `database.sql` file.
 ## 
-
-
 <img width="1402" alt="Screen Shot 2022-03-08 at 5 00 07 PM" src="https://user-images.githubusercontent.com/74881196/157342072-6bff130d-7588-4064-b258-090ddbce0760.png">
-
+<img width="841" alt="Screen Shot 2022-03-08 at 4 59 36 PM" src="https://user-images.githubusercontent.com/74881196/157342016-016b883c-09e4-4a9a-8e6b-690b34952bf2.png">
+<img width="1678" alt="Screen Shot 2022-03-08 at 5 23 16 PM" src="https://user-images.githubusercontent.com/74881196/157342789-b4ef5a6b-3b93-448a-a07b-03d8b6468fc3.png">
 <img width="1678" alt="Screen Shot 2022-03-08 at 4 47 51 PM" src="https://user-images.githubusercontent.com/74881196/157342107-ca757e4c-a661-4b84-967a-46d1e873ded1.png">
 <img width="1677" alt="Screen Shot 2022-03-08 at 4 48 22 PM" src="https://user-images.githubusercontent.com/74881196/157342128-5d58e68e-1c43-421b-834f-ca376764e7c0.png">
 <img width="1678" alt="Screen Shot 2022-03-08 at 4 48 38 PM" src="https://user-images.githubusercontent.com/74881196/157342136-731ae961-5f12-487b-b557-bfa9e8c3fa65.png">
