@@ -47,7 +47,7 @@ The registration page is set up for a new user to create an account with a usern
 <img width="1679" alt="Screen Shot 2022-03-08 at 5 29 09 PM" src="https://user-images.githubusercontent.com/74881196/157343305-7480ac36-e2ec-43d3-904b-11a9811fac80.png">
 
 ### Login page
-If the user (employee) already has an account, they can bypass the register page and login to their existing account.
+If the user (employee) already has an account, they can bypass the registeration page and login to their existing account.
 ### 
 <img width="1680" alt="Screen Shot 2022-03-08 at 5 27 33 PM" src="https://user-images.githubusercontent.com/74881196/157343184-f8f4f667-b07a-4a53-bdcc-712819439d55.png">
 
