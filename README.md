@@ -6,7 +6,7 @@
 Duration: 2 Week Sprint
 
 Cutting Edge is a snow removal routing service. It is used to navigate employees through the harshest winters. 
-I wanted to build Cutting Edge because of my past experience in working snow removal.
+I wanted to build Cutting Edge because of my past experience working snow removal.
 My goal was to create a user-friendly web-app where employees can log-in and utalize the app the document their progress real-time.
 In the past I have used pen and paper to physically write down times for arrival and departure for each property.
 Although, it is a pretty straight-forward method, I knew there was a better way. 
