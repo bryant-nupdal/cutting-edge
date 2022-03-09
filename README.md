@@ -26,13 +26,19 @@ Create a new database called `cutting_edge` and paste the data from the `databas
 <img width="1680" alt="Screen Shot 2022-03-08 at 6 39 21 PM" src="https://user-images.githubusercontent.com/74881196/157350129-31413fca-07b9-4008-b2d3-68e365d5ce68.png">
 
 ## Technologies
-Node
-Express
-React
-Postgresql
-Heroku
-Moment
-Bootstrap
+- Node
+- Express
+- React
+- Postgresql
+- Heroku
+- Moment
+- Bootstrap
+
+## Setup 
+1. Open up your editor of choice and run an npm install
+2. Run npm run server in your terminal
+3. Run npm run client in your terminal
+4. The npm run client command will open up a new browser tab for you!
 
 ## UI / UX 
 ### Registeration Page
@@ -65,7 +71,7 @@ As an employee arrives and departs from a property, (selects the clocks-in and c
 <img width="1677" alt="Screen Shot 2022-03-08 at 4 48 22 PM" src="https://user-images.githubusercontent.com/74881196/157342128-5d58e68e-1c43-421b-834f-ca376764e7c0.png">
 
 ### Selected Route Page pt.2
-Below shows how it looks to clock in and out of properties. The properties are first wrapped in a Bootstrap Card, and then at the bottom of the card there is an accordian that expands and clapses to show the date, clock in and clock out time, who completed the timecard, and the duration it took to complete the task. For demo purposes, you can see that the clock in and out times are minutes apart, but as for the duration, it is actually set to minutes as well, even though it reads as hours. This is done to show a more accurate reading and is updated in the file itself.
+Below shows how it looks to clock in and out of properties. The properties are first wrapped in a Bootstrap Card, and then at the bottom of the card there is an accordian that expands and clasps to show the date, clock in and clock out time, who completed the timecard, and the duration it took to complete the task. For demo purposes, you can see that the clock in and out times are minutes apart, but as for the duration, it is actually set to minutes as well, even though it reads as hours. This is done to show a more accurate reading and is updated in the file itself.
 ### 
 <img width="1680" alt="Screen Shot 2022-03-08 at 7 22 40 PM" src="https://user-images.githubusercontent.com/74881196/157354039-52d02af8-38cb-4c0d-a5cf-39769d368e55.png">
 
@@ -74,3 +80,12 @@ The about page is open to the public. This page can be accessed before logging i
 The main purpose of this page is to give a brief overview of the app to anyone interested in it without creating ties to it first.
 ### 
 <img width="1678" alt="Screen Shot 2022-03-08 at 4 48 38 PM" src="https://user-images.githubusercontent.com/74881196/157342136-731ae961-5f12-487b-b557-bfa9e8c3fa65.png">
+
+### Acknowledgement
+Thanks to Emerging Digital Academy who equipped and helped me to make this application a reality.
+
+### Support
+If you have suggestions or issues, please email me at nupdalbryant@icloud.com
+
+
+
