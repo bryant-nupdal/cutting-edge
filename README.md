@@ -13,7 +13,7 @@ Although, it is a pretty straight-forward method, I knew there was a better way.
 With Cutting Edge, there will be no more missing or wet timecards, or trying to hold onto that one pen like it is your lifeline. 
 I bring to you, Cutting Edge.
 
-To see the fully functional site, please visit: `REPLEACE ME W/ HEROKU LINK`
+To see the fully functional site, please visit: https://cutting-edge-app.herokuapp.com/#/login
 
 ## Prerequisites
 Before you get started, make sure you have the following software installed on your computer:
