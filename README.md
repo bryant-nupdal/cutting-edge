@@ -1,6 +1,10 @@
 
 # Cutting Edge
-### Cutting Edge is a service to provide employees with a user-friendly way to navigate intensive snow shifts.
+#### Service to provide employees with a user-friendly way to navigate intensive snow shifts.
+
+## Description 
+Duration: 2 Week Sprint
+
 Cutting Edge is a snow removal routing service. It is used to navigate employees through the harshest winters. 
 I wanted to build Cutting Edge because of my past experience in working snow removal.
 My goal was to create a user-friendly web-app where employees can log-in and utalize the app the document their progress real-time.
